@@ -5,6 +5,8 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { BrowserRouter } from 'react-router';
+import List from './list.html';
+import Form from './form.html';
 
 class App extends React.Component {
   render() {
