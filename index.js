@@ -1,17 +1,14 @@
-// import list and form pages
-// build app component
 // use react router
-// use react-dom to render app
 import React from 'react';
 import { render } from 'react-dom';
 import { BrowserRouter } from 'react-router';
-import List from './list.html';
-import Form from './form.html';
+import List from './list.jsx';
+import Form from './form.jsx';
 
 class App extends React.Component {
   render() {
     return (
-      <div>App</div>
+      <List />
     );
   }
 }
