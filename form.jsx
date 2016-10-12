@@ -1,9 +1,13 @@
 import React from 'react';
 import Form from './form.html';
 
+const parser = new DOMParser();
+
 export default class extends React.Component {
   createMarkup() {
-    return { __html: Form };
+    const html = parser.parseFromString(Form, 'text/html');
+    const htmlString = html.documentElement.querySelector('body').innerHTML
+    return { __html: htmlString };
   }
   render() {
     return (
