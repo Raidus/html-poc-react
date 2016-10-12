@@ -1,14 +1,19 @@
 // use react router
 import React from 'react';
 import { render } from 'react-dom';
-import { BrowserRouter } from 'react-router';
+import { BrowserRouter, Match } from 'react-router';
 import List from './list.jsx';
 import Form from './form.jsx';
 
 class App extends React.Component {
   render() {
     return (
-      <List />
+      <BrowserRouter>
+        <div>
+          <Match exactly pattern="/" component={List} />
+          <Match exactly pattern="/test" component={Form} />
+        </div>
+      </BrowserRouter>
     );
   }
 }
