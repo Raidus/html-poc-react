@@ -2,10 +2,11 @@ import Form from './form.html';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { getBodyElement, buildScriptWithFn } from './helpers';
+import { connect } from 'react-redux';
 
-export default class extends React.Component {
+class FormComponent extends React.Component {
   logResult() {
-    const name = document.getElementById('todo-name');
+    const name = document.querySelector('#todo-name');
     console.log('the name', name.value);
     return false;
   }
@@ -26,4 +27,10 @@ export default class extends React.Component {
   componentWillUnmount() {
     this.script.remove();
   }
-};
+}
+
+const FormComponentWithRedux = connect(state => ({
+  todoValue: state.todoFormValkke
+}))(FormComponent);
+
+export default FormComponentWithRedux;
