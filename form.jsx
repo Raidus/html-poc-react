@@ -10,12 +10,21 @@ class FormComponent extends React.Component {
     console.log('the name', name.value);
     return false;
   }
+  updateInputState() {
+    const input = document.querySelector('#todo-name');
+    console.log(input.value)
+    return false;
+  }
   createMarkup() {
     const body = getBodyElement(Form);
     this.script = buildScriptWithFn(this.logResult);
+    this.inputScript = buildScriptWithFn(this.updateInputState);
     document.body.appendChild(this.script);
+    document.body.appendChild(this.inputScript);
     const form = body.querySelector('#todo-form');
     form.setAttribute('onsubmit', 'return logResult()');
+    const input = body.querySelector('#todo-name');
+    input.setAttribute('oninput', 'return updateInputState()');
     const htmlString = body.innerHTML
     return { __html: htmlString };
   }
@@ -26,6 +35,7 @@ class FormComponent extends React.Component {
   }
   componentWillUnmount() {
     this.script.remove();
+    this.inputScript.remove();
   }
 }
 
