@@ -3,21 +3,8 @@ import { render } from 'react-dom';
 import { BrowserRouter, Match, Link } from 'react-router';
 import List from './list.jsx';
 import Form from './form.jsx';
-import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-
-const TODO_FORM_CHANGE = 'TODO_FORM_CHANGE';
-
-const appReducer = (state = {}, action) => {
-  switch (action.type) {
-    case TODO_FORM_CHANGE:
-      return Object.assign({}, state, { todoFormValue: action.value });
-    default:
-      return state;
-  }
-};
-
-const store = createStore(appReducer);
+import { store } from './store';
 
 class App extends React.Component {
   render() {

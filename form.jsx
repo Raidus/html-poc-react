@@ -3,8 +3,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { getBodyElement, buildScriptWithFn } from './helpers';
 import { connect } from 'react-redux';
+import { store, updateTodoForm } from './store';
 
 class FormComponent extends React.Component {
+  constructor() {
+    super();
+    window.store = store;
+    window.updateTodoForm = updateTodoForm;
+  }
   logResult() {
     const name = document.querySelector('#todo-name');
     console.log('the name', name.value);
@@ -12,7 +18,7 @@ class FormComponent extends React.Component {
   }
   updateInputState() {
     const input = document.querySelector('#todo-name');
-    console.log(input.value)
+    window.store.dispatch(window.updateTodoForm(input.value));
     return false;
   }
   createMarkup() {
@@ -34,13 +40,15 @@ class FormComponent extends React.Component {
     );
   }
   componentWillUnmount() {
+    delete window.store;
+    delete window.updateTodoForm;
     this.script.remove();
     this.inputScript.remove();
   }
 }
 
 const FormComponentWithRedux = connect(state => ({
-  todoValue: state.todoFormValkke
+  todoValue: state.todoFormValue
 }))(FormComponent);
 
 export default FormComponentWithRedux;
